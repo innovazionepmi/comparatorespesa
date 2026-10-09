@@ -1,32 +1,21 @@
-# Esempio con 3 voci fittizie: sostituisci con il tuo paniere.
+# Paniere reale (formati liberi: il confronto e' sul prezzo al kg/l, non sul formato).
+# Per rimettere un vincolo di formato: unit_hint: "500g" + size_tolerance_pct: 25
 basket:
   - id: cereali_colazione
-    label: "Cereali da colazione"
-    quantity: 1
-    unit_hint: "500g"
+    label: "Cereali da colazione (Cheerios, Consilia, Nesquik)"
+    quantity: 1                       # TODO_UTENTE: quanti pezzi/confezioni servono
+    queries: ["cheerios", "consilia cereali", "nesquik cereali"]
     accept:
-      brands: ["CHEERIOS", "Kellogs"]
-      must_include: ["cereali"]
-      must_exclude: ["barrette"]
-    size_tolerance_pct: 25
-    allow_private_label: true
-  - id: latte_ul
-    label: "Latte UHT intero"
-    quantity: 6
-    unit_hint: "1l"
+      brands: ["Cheerios", "Consilia", "Nesquik"]
+      must_include: ["cereal"]        # esclude cacao in polvere ecc.
+      must_exclude: ["barrett"]
+    allow_private_label: false        # scarta tutte le altre marche
+  - id: pasta
+    label: "Pasta (La Molisana, Rummo, Garofalo)"
+    quantity: 1                       # TODO_UTENTE
+    queries: ["pasta la molisana", "pasta rummo", "pasta garofalo"]
     accept:
-      brands: []
-      must_include: ["latte", "intero"]
-      must_exclude: ["soia", "avena"]
-    size_tolerance_pct: 10
-    allow_private_label: true
-  - id: pasta_penne
-    label: "Penne rigate"
-    quantity: 2
-    unit_hint: "500g"
-    accept:
-      brands: ["Barilla", "De Cecco"]
-      must_include: ["penne", "rigate"]
+      brands: ["Molisana", "Rummo", "Garofalo"]
+      must_include: []
       must_exclude: []
-    size_tolerance_pct: 10
-    allow_private_label: true
+    allow_private_label: false

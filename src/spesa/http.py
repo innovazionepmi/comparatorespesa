@@ -19,7 +19,7 @@ RAW_KEEP_DAYS = 7
 
 
 class PoliteClient:
-    def __init__(self, store: str, delay: tuple[float, float] = (2.0, 6.0), retries: int = 3,
+    def __init__(self, store: str, delay: tuple[float, float] = (2.0, 6.0), retries: int = 5,
                  base_url: str = "") -> None:
         self.store, self.delay, self.retries = store, delay, retries
         self.client = httpx.Client(base_url=base_url, timeout=30, follow_redirects=True,

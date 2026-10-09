@@ -35,7 +35,10 @@ def match(item: BasketItem, p: Product) -> MatchResult:
             return MatchResult("scartato", "marca non accettata")
         return MatchResult("ambiguo", "marca non in lista (marca del distributore o altro?)")
 
-    want, got = parse_format(item.unit_hint), parse_format(p.format_text)
+    got = parse_format(p.format_text)
+    if item.size_tolerance_pct is None or not item.unit_hint:
+        return MatchResult("match", "ok", comparable=got is not None)  # formato libero
+    want = parse_format(item.unit_hint)
     if want is None:
         return MatchResult("match", "ok", comparable=got is not None)
     if got is None:

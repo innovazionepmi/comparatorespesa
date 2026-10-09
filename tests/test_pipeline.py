@@ -10,14 +10,16 @@ from spesa.pipeline import run_store
 from spesa.storage import SqliteStorage
 
 CFG = Path(__file__).resolve().parents[1] / "config"
+BASKET = Path(__file__).parent / "fixtures" / "basket_test.yaml"
 
 
 def test_basket_valid():
-    assert len(load_basket(CFG / "basket.yaml").basket) == 3
+    assert len(load_basket(CFG / "basket.yaml").basket) == 2
+    assert len(load_basket(BASKET).basket) == 4
 
 
 def test_match_rules():
-    item = load_basket(CFG / "basket.yaml").basket[0]
+    item = load_basket(BASKET).basket[0]
     ok = Product(store="x", store_product_id="1", name="Cereali Cheerios", brand="CHEERIOS",
                  format_text="500 g", price=3)
     bar = ok.model_copy(update={"name": "Barrette ai cereali"})
@@ -28,7 +30,7 @@ def test_match_rules():
 
 
 def test_end_to_end(tmp_path):
-    basket, user = load_basket(CFG / "basket.yaml"), load_user(CFG / "user.example.yaml")
+    basket, user = load_basket(BASKET), load_user(CFG / "user.example.yaml")
     st, day, pts = SqliteStorage(":memory:"), date(2026, 1, 1), []
     for n in ("fake_a", "fake_b"):
         pts += run_store(FakeConnector(n), basket, user, st, day, tmp_path / "amb.csv", delay=(0, 0))
@@ -38,3 +40,12 @@ def test_end_to_end(tmp_path):
     assert by["latte_ul"].best.store == "fake_b"
     assert (tmp_path / "amb.csv").exists()  # 375g vs 500g fuori tolleranza -> ambiguo
     assert set(cmp.totals) | set(cmp.incomplete) == {"fake_a", "fake_b"}
+
+
+def test_free_format_and_brand_filter():
+    item = load_basket(BASKET).basket[3]
+    rummo = Product(store="x", store_product_id="1", name="Penne Rigate", brand="Rummo",
+                    format_text="1 kg", price=2)
+    other = rummo.model_copy(update={"brand": "Barilla"})
+    assert match(item, rummo).status == "match"  # nessun vincolo di formato
+    assert match(item, other).status == "scartato"  # marche non in lista: scartate, non ambigue

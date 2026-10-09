@@ -17,8 +17,10 @@ from spesa.storage import Storage
 log = logging.getLogger("spesa")
 
 
-def _query(item) -> str:  # una ricerca per voce: parola chiave principale
-    return item.accept.must_include[0] if item.accept.must_include else item.label
+def _queries(item) -> list[str]:
+    if item.queries:
+        return item.queries
+    return [item.accept.must_include[0] if item.accept.must_include else item.label]
 
 
 def run_store(conn: Connector, basket: Basket, user: UserCfg, storage: Storage, day: date,
@@ -32,7 +34,12 @@ def run_store(conn: Connector, basket: Basket, user: UserCfg, storage: Storage, 
             if n and delay[1] > 0:
                 time.sleep(random.uniform(*delay))
             seen: set[str] = set()
-            for p in conn.search(_query(item)):
+            found: list[Product] = []
+            for qn, q in enumerate(_queries(item)):
+                if qn and delay[1] > 0:
+                    time.sleep(random.uniform(*delay))
+                found += conn.search(q)
+            for p in found:
                 if p.store_product_id in seen:
                     continue
                 seen.add(p.store_product_id)

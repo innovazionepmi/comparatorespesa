@@ -16,9 +16,10 @@ class BasketItem(BaseModel):
     id: str
     label: str
     quantity: float = 1
-    unit_hint: str
+    unit_hint: str = ""  # opzionale: serve solo se si imposta size_tolerance_pct
+    queries: list[str] = []  # ricerche da fare; se vuoto: prima keyword di must_include o label
     accept: Accept = Accept()
-    size_tolerance_pct: float = 25
+    size_tolerance_pct: float | None = None  # None = qualsiasi formato
     allow_private_label: bool = True
 
 

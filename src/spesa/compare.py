@@ -40,6 +40,10 @@ def compare(basket: Basket, points: list[PricePoint], stores: dict[str, StoreCfg
     for it in basket.basket:
         cand = [p for p in points if p.basket_id == it.id and p.comparable
                 and p.normalized_price is not None]
+        if cand:
+            kinds = [p.unit_kind for p in cand]
+            top = max(set(kinds), key=kinds.count)
+            cand = [p for p in cand if p.unit_kind == top]  # mai mescolare EUR/kg e EUR/l
         per_store: dict[str, PricePoint] = {}
         for p in cand:  # miglior prodotto per insegna
             cur = per_store.get(p.store)
