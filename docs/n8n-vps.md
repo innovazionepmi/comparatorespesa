@@ -23,6 +23,10 @@ Storico prezzi, report e casi ambigui stanno nei volumi Docker `spesa-data` e `s
 
 ## 2. In n8n
 
+Il workflow "Spesa compare - run giornaliera" e' gia' stato creato (spento) con bot Telegram
+`EmilioZuccaAssistantBot` e partenza alle 7:00. Restano da fare solo: credenziale token, chat ID, attivazione.
+Se vuoi ricostruirlo a mano, i passi sono questi:
+
 1. Crea una credenziale **Header Auth** con nome `X-Token` e valore uguale a `SPESA_TOKEN`.
 2. Workflow: *Schedule Trigger* (una volta al giorno) -> *HTTP Request* `POST http://spesa:8080/run`
    (credenziale sopra, timeout 600000 ms, "Never error" attivo per leggere anche gli esiti 4xx/5xx)
