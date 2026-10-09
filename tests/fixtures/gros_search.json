@@ -1,0 +1,503 @@
+{
+ "response": {
+  "status": 0,
+  "errors": [],
+  "infos": [],
+  "warnings": [],
+  "errorsMessage": [],
+  "infosMessage": [],
+  "warningsMessage": []
+ },
+ "data": {
+  "page": {
+   "selPage": 1,
+   "totPages": 2,
+   "totItems": 9,
+   "itemsPerPage": 6
+  },
+  "products": [
+   {
+    "id": 755877,
+    "productId": 755877,
+    "codInt": "204115",
+    "codVar": "1",
+    "code": "204115",
+    "codeVariant": "1",
+    "name": "MEZZE MANICHE N.55",
+    "shortDescr": "DIVELLA",
+    "description": "1 kg",
+    "pubState": 1,
+    "slug": "divella-mezze-maniche-1-kg",
+    "itemUrl": "/product/divella-mezze-maniche-1-kg",
+    "storeId": 5,
+    "productTypeId": 1,
+    "productNatureId": 1,
+    "productHierarchyLevelId": 1,
+    "vendor": {
+     "vendorId": 124785,
+     "name": "DIVELLA"
+    },
+    "categoryId": 45141,
+    "ivaCategory": {
+     "ivaCategoryId": 25,
+     "code": "4",
+     "descr": "IVA 4%",
+     "ivaPct": "0.04"
+    },
+    "unitMeasureBase": {
+     "umId": 1,
+     "um": "KG",
+     "umDes": ""
+    },
+    "productInfos": {
+     "WEIGHT_SELLING": "0.0",
+     "MEAL_TICKET_ENABLED": "true",
+     "MINACQ": "1",
+     "STOCK_DAYS_ALTERNATIVE": "0",
+     "WEB_ENABLED": "1",
+     "TIPOLOGIA": "Pezzo",
+     "STOCK_DAYS": "0",
+     "WEIGHT_UNIT_BASE": "KG",
+     "CHECKED": "true"
+    },
+    "dayLock": "",
+    "mediaURL": "/photo/2026/08/07/e/main/thumb/000204115_scancubefoto0000.jpg",
+    "mediaURLMedium": "/photo/2026/08/07/e/main/photo/000204115_scancubefoto0000.jpg",
+    "price": 1.49,
+    "priceId": 117193520,
+    "priceListName": "Gros",
+    "priceListId": 378,
+    "currency": {
+     "currencyTypeId": 2,
+     "name": "Euro",
+     "currencySymbol": "",
+     "codInt": ""
+    },
+    "priceDisplay": 1.49,
+    "weightUnitDisplay": "KG",
+    "priceUnitDisplay": "pz",
+    "priceUmDisplay": 1.49,
+    "available": 100000000
+   },
+   {
+    "id": 751201,
+    "productId": 751201,
+    "codInt": "3411",
+    "codVar": "1",
+    "code": "3411",
+    "codeVariant": "1",
+    "name": "MEZZE MANICHE RIGATE N.122",
+    "shortDescr": "VOIELLO",
+    "description": "500 g",
+    "pubState": 1,
+    "slug": "voiello-mezze-maniche-rigate-g-500",
+    "itemUrl": "/product/voiello-mezze-maniche-rigate-g-500",
+    "storeId": 5,
+    "productTypeId": 1,
+    "productNatureId": 1,
+    "productHierarchyLevelId": 1,
+    "vendor": {
+     "vendorId": 125146,
+     "name": "VOIELLO"
+    },
+    "categoryId": 45141,
+    "ivaCategory": {
+     "ivaCategoryId": 25,
+     "code": "4",
+     "descr": "IVA 4%",
+     "ivaPct": "0.04"
+    },
+    "unitMeasureBase": {
+     "umId": 1,
+     "um": "KG",
+     "umDes": ""
+    },
+    "productInfos": {
+     "WEIGHT_SELLING": "0.0",
+     "MEAL_TICKET_ENABLED": "true",
+     "MINACQ": "1",
+     "STOCK_DAYS_ALTERNATIVE": "828",
+     "WEB_ENABLED": "1",
+     "TIPOLOGIA": "Pezzo",
+     "STOCK_DAYS": "414",
+     "WEIGHT_UNIT_BASE": "KG",
+     "CHECKED": "true"
+    },
+    "dayLock": "",
+    "mediaURL": "/photo/2021/06/11/e/main/thumb/000003411_scancubefoto0000.jpg",
+    "mediaURLMedium": "/photo/2021/06/11/e/main/photo/000003411_scancubefoto0000.jpg",
+    "price": 1.49,
+    "priceId": 117201269,
+    "priceListName": "Gros",
+    "priceListId": 378,
+    "currency": {
+     "currencyTypeId": 2,
+     "name": "Euro",
+     "currencySymbol": "",
+     "codInt": ""
+    },
+    "priceDisplay": 1.49,
+    "weightUnitDisplay": "KG",
+    "priceUnitDisplay": "pz",
+    "priceUmDisplay": 2.98,
+    "available": 100000000
+   },
+   {
+    "id": 752284,
+    "productId": 752284,
+    "codInt": "25266",
+    "codVar": "1",
+    "code": "25266",
+    "codeVariant": "1",
+    "name": "MEZZE MANICHE N.53",
+    "shortDescr": "DIVELLA",
+    "description": "500 g",
+    "pubState": 1,
+    "slug": "divella-mezze-maniche-rigoloni-g-500-n55",
+    "itemUrl": "/product/divella-mezze-maniche-rigoloni-g-500-n55",
+    "storeId": 5,
+    "productTypeId": 1,
+    "productNatureId": 1,
+    "productHierarchyLevelId": 1,
+    "vendor": {
+     "vendorId": 124785,
+     "name": "DIVELLA"
+    },
+    "categoryId": 45141,
+    "ivaCategory": {
+     "ivaCategoryId": 25,
+     "code": "4",
+     "descr": "IVA 4%",
+     "ivaPct": "0.04"
+    },
+    "unitMeasureBase": {
+     "umId": 1,
+     "um": "KG",
+     "umDes": ""
+    },
+    "productInfos": {
+     "WEIGHT_SELLING": "0.0",
+     "MEAL_TICKET_ENABLED": "true",
+     "MINACQ": "1",
+     "STOCK_DAYS_ALTERNATIVE": "816",
+     "WEB_ENABLED": "1",
+     "WEIGHT_VARIABLE": "false",
+     "TIPOLOGIA": "Pezzo",
+     "STOCK_DAYS": "408",
+     "WEIGHT_UNIT_BASE": "PZ",
+     "CHECKED": "true"
+    },
+    "dayLock": "",
+    "mediaURL": "/photo/2020/03/28/e/main/thumb/000025266_scancubefoto0000.jpg",
+    "mediaURLMedium": "/photo/2020/03/28/e/main/photo/000025266_scancubefoto0000.jpg",
+    "price": 0.83,
+    "priceId": 117192971,
+    "priceListName": "Gros",
+    "priceListId": 378,
+    "currency": {
+     "currencyTypeId": 2,
+     "name": "Euro",
+     "currencySymbol": "",
+     "codInt": ""
+    },
+    "priceDisplay": 0.83,
+    "weightUnitDisplay": "PZ",
+    "priceUnitDisplay": "pz",
+    "priceUmDisplay": 1.66,
+    "available": 100000000
+   },
+   {
+    "id": 793395,
+    "productId": 793395,
+    "codInt": "218800",
+    "codVar": "1",
+    "code": "218800",
+    "codeVariant": "1",
+    "name": "MEZZE MANICHE N.38",
+    "shortDescr": "LA MOLISANA",
+    "description": "500 g (Minimo € 1,49 - 55%)",
+    "pubState": 1,
+    "slug": "la-molisana-mezze-man-rig-n38-500-g",
+    "itemUrl": "/product/la-molisana-mezze-man-rig-n38-500-g",
+    "storeId": 5,
+    "productTypeId": 1,
+    "productNatureId": 1,
+    "productHierarchyLevelId": 1,
+    "vendor": {
+     "vendorId": 124887,
+     "name": "LA MOLISANA"
+    },
+    "categoryId": 45141,
+    "ivaCategory": {
+     "ivaCategoryId": 25,
+     "code": "4",
+     "descr": "IVA 4%",
+     "ivaPct": "0.04"
+    },
+    "unitMeasureBase": {
+     "umId": 1,
+     "um": "KG",
+     "umDes": ""
+    },
+    "productInfos": {
+     "WEIGHT_SELLING": "0.0",
+     "MEAL_TICKET_ENABLED": "true",
+     "MINACQ": "1",
+     "STOCK_DAYS_ALTERNATIVE": "0",
+     "WEB_ENABLED": "1",
+     "TIPOLOGIA": "Pezzo",
+     "STOCK_DAYS": "0",
+     "WEIGHT_UNIT_BASE": "KG",
+     "CHECKED": "true"
+    },
+    "dayLock": "",
+    "mediaURL": "/photo/2022/12/06/e/main/thumb/000218800_scancubefoto0000.jpg",
+    "mediaURLMedium": "/photo/2022/12/06/e/main/photo/000218800_scancubefoto0000.jpg",
+    "warehousePromo": {
+     "warehousePromoId": 1911673,
+     "discountPerc": 55.034,
+     "promoType": "tapvis",
+     "warehousePromoTypeId": 5,
+     "cashDeskPromo": false,
+     "validityDate": "02/10/2026",
+     "expireDate": "13/10/2026",
+     "view": {
+      "cssClass": "promo_discount promo_tapvis",
+      "body": "PROMO"
+     }
+    },
+    "price": 1.49,
+    "priceId": 117194646,
+    "priceListName": "Gros",
+    "priceListId": 378,
+    "currency": {
+     "currencyTypeId": 2,
+     "name": "Euro",
+     "currencySymbol": "",
+     "codInt": ""
+    },
+    "priceDisplay": 0.67,
+    "priceStandardDisplay": 1.49,
+    "weightUnitDisplay": "KG",
+    "priceUnitDisplay": "pz",
+    "priceUmDisplay": 1.34,
+    "productClassRuleMax": {
+     "productClassName": "Pasta",
+     "max": 12,
+     "unit": "pz"
+    },
+    "available": 100000000
+   },
+   {
+    "id": 756425,
+    "productId": 756425,
+    "codInt": "36360",
+    "codVar": "1",
+    "code": "36360",
+    "codeVariant": "1",
+    "name": "MEZZE MANICHE RIGATE INTEGRALI BIO N.5-32",
+    "shortDescr": "GAROFALO",
+    "description": "500 g",
+    "pubState": 1,
+    "slug": "garofalo-pasta-integmezmanica-rigg500",
+    "itemUrl": "/product/garofalo-pasta-integmezmanica-rigg500",
+    "storeId": 5,
+    "productTypeId": 1,
+    "productNatureId": 1,
+    "productHierarchyLevelId": 1,
+    "vendor": {
+     "vendorId": 124701,
+     "name": "GAROFALO"
+    },
+    "categoryId": 45141,
+    "ivaCategory": {
+     "ivaCategoryId": 25,
+     "code": "4",
+     "descr": "IVA 4%",
+     "ivaPct": "0.04"
+    },
+    "unitMeasureBase": {
+     "umId": 1,
+     "um": "KG",
+     "umDes": ""
+    },
+    "productInfos": {
+     "WEIGHT_SELLING": "0.0",
+     "MEAL_TICKET_ENABLED": "true",
+     "MINACQ": "1",
+     "STOCK_DAYS_ALTERNATIVE": "0",
+     "WEB_ENABLED": "1",
+     "TIPOLOGIA": "Pezzo",
+     "STOCK_DAYS": "0",
+     "WEIGHT_UNIT_BASE": "KG",
+     "CHECKED": "true"
+    },
+    "dayLock": "",
+    "mediaURL": "/photo/2022/08/12/e/main/thumb/000036360_scancubefoto0000.jpg",
+    "mediaURLMedium": "/photo/2022/08/12/e/main/photo/000036360_scancubefoto0000.jpg",
+    "price": 1.79,
+    "priceId": 117199677,
+    "priceListName": "Gros",
+    "priceListId": 378,
+    "currency": {
+     "currencyTypeId": 2,
+     "name": "Euro",
+     "currencySymbol": "",
+     "codInt": ""
+    },
+    "priceDisplay": 1.79,
+    "weightUnitDisplay": "KG",
+    "priceUnitDisplay": "pz",
+    "priceUmDisplay": 3.58,
+    "available": 100000000
+   },
+   {
+    "id": 751179,
+    "productId": 751179,
+    "codInt": "3375",
+    "codVar": "1",
+    "code": "3375",
+    "codeVariant": "1",
+    "name": "MEZZE MANICHE RIGATE N.84",
+    "shortDescr": "BARILLA",
+    "description": "500 g",
+    "pubState": 1,
+    "slug": "barilla-mezze-maniche-rign84-g-500",
+    "itemUrl": "/product/barilla-mezze-maniche-rign84-g-500",
+    "storeId": 5,
+    "productTypeId": 1,
+    "productNatureId": 1,
+    "productHierarchyLevelId": 1,
+    "vendor": {
+     "vendorId": 124687,
+     "name": "BARILLA"
+    },
+    "categoryId": 45141,
+    "ivaCategory": {
+     "ivaCategoryId": 25,
+     "code": "4",
+     "descr": "IVA 4%",
+     "ivaPct": "0.04"
+    },
+    "unitMeasureBase": {
+     "umId": 1,
+     "um": "KG",
+     "umDes": ""
+    },
+    "productInfos": {
+     "WEIGHT_SELLING": "0.0",
+     "MEAL_TICKET_ENABLED": "true",
+     "MINACQ": "1",
+     "STOCK_DAYS_ALTERNATIVE": "828",
+     "WEB_ENABLED": "1",
+     "TIPOLOGIA": "Pezzo",
+     "STOCK_DAYS": "414",
+     "WEIGHT_UNIT_BASE": "KG",
+     "CHECKED": "true"
+    },
+    "dayLock": "",
+    "mediaURL": "/photo/2024/11/14/e/main/thumb/000003375_scancubefoto0000.jpg",
+    "mediaURLMedium": "/photo/2024/11/14/e/main/photo/000003375_scancubefoto0000.jpg",
+    "price": 0.99,
+    "priceId": 117198691,
+    "priceListName": "Gros",
+    "priceListId": 378,
+    "currency": {
+     "currencyTypeId": 2,
+     "name": "Euro",
+     "currencySymbol": "",
+     "codInt": ""
+    },
+    "priceDisplay": 0.99,
+    "weightUnitDisplay": "KG",
+    "priceUnitDisplay": "pz",
+    "priceUmDisplay": 1.98,
+    "available": 100000000
+   }
+  ],
+  "facets": [
+   {
+    "name": "Caratteristiche",
+    "parameterName": "product_class_10000",
+    "paramType": "",
+    "values": [
+     {
+      "id": 10252,
+      "name": "Biologico",
+      "description": "BIOLOGICO",
+      "priority": "1",
+      "count": "1",
+      "filteredCount": "1"
+     },
+     {
+      "id": 10299,
+      "name": "Igp",
+      "description": "IGP",
+      "priority": "1",
+      "count": "1",
+      "filteredCount": "1"
+     },
+     {
+      "id": 10255,
+      "name": "Integrale",
+      "description": "INTEGRALE",
+      "priority": "1",
+      "count": "1",
+      "filteredCount": "1"
+     },
+     {
+      "id": 10274,
+      "name": "Kosher",
+      "description": "KOSHER",
+      "priority": "1",
+      "count": "1",
+      "filteredCount": "1"
+     }
+    ]
+   },
+   {
+    "name": "Marchio",
+    "parameterName": "vendor_id",
+    "paramType": "",
+    "values": [
+     {
+      "id": 125874,
+      "name": "ARMANDO",
+      "count": "2",
+      "filteredCount": "2"
+     },
+     {
+      "id": 124687,
+      "name": "BARILLA",
+      "count": "1",
+      "filteredCount": "1"
+     },
+     {
+      "id": 124785,
+      "name": "DIVELLA",
+      "count": "2",
+      "filteredCount": "2"
+     },
+     {
+      "id": 124701,
+      "name": "GAROFALO",
+      "count": "2",
+      "filteredCount": "2"
+     },
+     {
+      "id": 124887,
+      "name": "LA MOLISANA",
+      "count": "1",
+      "filteredCount": "1"
+     },
+     {
+      "id": 125146,
+      "name": "VOIELLO",
+      "count": "1",
+      "filteredCount": "1"
+     }
+    ]
+   }
+  ]
+ }
+}

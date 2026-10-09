@@ -1,6 +1,6 @@
 # Fase 0 — Ricognizione (2026-10-09)
 
-Stato: **bozza da confermare**. Fonti: ricerche web e lettura di robots.txt.
+Stato: **aggiornato dopo ispezione di rete (2026-10-09)**; vedi sezione 'Esito ispezione' in fondo. Fonti: ricerche web e lettura di robots.txt.
 Non ho ispezionato le chiamate di rete reali dei siti (nessun test live da questo ambiente) e **non conosco ancora l'indirizzo dell'utente**: la copertura è quindi non verificata.
 
 ## Tabella di fattibilità
@@ -38,3 +38,18 @@ Non ho ispezionato le chiamate di rete reali dei siti (nessun test live da quest
 3. Costi di consegna e ordine minimo per insegna, se già noti.
 4. Decisione su **Gros** (analizzarlo o escluderlo) e su **Amazon Fresh** (account dedicato? lo includiamo, dato rischio alto e fattibilità bassa?).
 5. Conferma che posso procedere con Esselunga come primo connettore, usando la navigazione per categoria invece di `/ricerca`.
+
+## Esito ispezione di rete (2026-10-09)
+
+| Insegna | Fatto | Esito per via Giovanni Re 105, 00134 Roma |
+|---|---|---|
+| **Gros** | API JSON `GET www.gros.it/ebsn/api/products?q=<testo>&page_size=N` (piattaforma EBSN), senza login. `price` = listino, `priceDisplay` = prezzo effettivo con promo, `description` = formato, `shortDescr` = marca. Il listino non dipende dall'indirizzo. | **Funziona.** Connettore completo (`connectors/gros.py`) con test su fixture. La copertura dell'indirizzo (entro il GRA) NON e' verificata: l'API di verifica (`user-address/check`) fa parte del flusso sessione/ordine e non e' stata usata. |
+| **Todis** | Sito ASP.NET con HTML server-side e microdata schema.org; prezzi per punto vendita (`/spesa-consegna-domicilio/<codice>/`). Copertura via `api-fe.restore.shopping/tenants/v2/coverage/checkaddress/<via citta'>?tenant=tod`. | La API di copertura restituisce `[]` per l'indirizzo (restituisce invece un punto vendita per Via del Corso, Piazza Venezia, Via Laurentina). **Indirizzo non risulta coperto.** Il connettore verifica la copertura e dichiara l'insegna non disponibile; il parsing del catalogo non e' implementato perche' senza copertura i prezzi non sarebbero quelli del tuo indirizzo. |
+| **Esselunga** | SPA Angular con API JSON sotto `/commerce/resources/`. `onboarding/postcode/check` risponde `SUPPORTED` per 00134 (ma anche a intermittenza con reset di connessione), `onboarding/street/suggestions` elenca "Via Giovanni Re - Roma". | Nel flusso del sito "VERIFICA INDIRIZZO" (CAP 00134 + "Via Giovanni Re 105") compare **"Indirizzo non trovato o non coperto dal servizio"**. Il connettore dichiara l'insegna non disponibile; il catalogo non e' implementato. |
+
+### Assunzioni
+
+- La copertura Gros per 00134 non e' verificata; il connettore assume Roma = coperta.
+- I flag `courier/furgoncino` delle suggestions Esselunga risultano `false` ovunque (anche a Milano): non affidabili per decidere la copertura.
+- I prezzi Gros sono considerati identici per tutta Roma (un solo listino "Gros" nelle risposte).
+- Il filtro marca/formato del matcher e' deterministico; i casi dubbi finiscono in `review/ambigui.csv`.
