@@ -60,3 +60,11 @@ Non ho ispezionato le chiamate di rete reali dei siti (nessun test live da quest
 - **Gros: copre tutta Roma** (verificato dall'utente sul sito). Connettore funzionante.
 - **Todis: non consegna** all'indirizzo (verificato dall'utente). Disabilitato in `config/user.yaml` (`enabled: false`); resta solo il controllo di copertura.
 - **Conad: consegna** (verificato dall'utente su spesaonline.conad.it, prima fascia oggi 17-19). Ispezione iniziale: sito Adobe Experience Manager, catalogo servito come HTML (la ricerca mostra "5422 risultati"), indirizzo inserito con autocompletamento Google Places (`googleInputEntrypageLine1` + civico in `...Line2`). robots.txt non disponibile (risposta di errore). **Connettore non ancora implementato**: serve completare il flusso indirizzo -> servizio "Spesa a casa" e individuare dove arrivano i dati dei prodotti. Probabilmente Playwright.
+
+## Conad: esito (2026-10-09) — non supportato con questo metodo
+
+- Flusso sul sito: indirizzo (Google Places) -> modale "Come vuoi fare la spesa?" -> "Spesa a casa / Seleziona" -> `POST /api/ecommerce/it-it.set-ecaccess.json` (imposta il punto vendita).
+- Il passaggio `set-ecaccess` richiede un `protectionToken` generato dallo script di protezione del sito (`POST /api/common/protection.json?step=zero`, azione `entryaccess`). Con browser automatico la protezione risponde **403 `WEB:PROTECTION_ERROR` "FE BOT Blocked"**.
+- Senza punto vendita impostato il catalogo non da' prezzi (`basePrice: 0.0`, ricerca con 0 risultati).
+- I vincoli del progetto escludono l'aggiramento di protezioni anti-bot, quindi **il connettore Conad non viene implementato**. L'API pubblica `stores.json` (elenco punti vendita per coordinate) funziona ma non basta a ottenere i prezzi.
+- Alternative possibili: volantino/offerte pubbliche Conad (solo promozioni, non il listino), un aggregatore (Everli, a pagamento o con ToS da verificare), oppure consultazione manuale.
