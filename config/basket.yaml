@@ -26,7 +26,7 @@ basket:
     unit_hint: "500g"
     accept:
       brands: ["Barilla", "De Cecco"]
-      must_include: ["penne"]
+      must_include: ["penne", "rigate"]
       must_exclude: []
     size_tolerance_pct: 10
     allow_private_label: true

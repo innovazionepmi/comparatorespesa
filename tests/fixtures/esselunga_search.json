@@ -1,0 +1,54 @@
+{
+ "displayables": {
+  "entities": [
+   {
+    "code": "114953",
+    "description": "Esselunga Penne rigate pasta di semola di grano duro n.19 500 g",
+    "brand": "Esselunga",
+    "price": 0.65,
+    "discountedPrice": 0.65,
+    "label": "1,30 € / kg "
+   },
+   {
+    "code": "114436",
+    "description": "Rummo Penne Rigate N° 66 500 g",
+    "brand": "Rummo",
+    "price": 1.59,
+    "discountedPrice": 1.59,
+    "label": "3,18 € / kg "
+   },
+   {
+    "code": "114591",
+    "description": "Molisana Penne Rigate N° 20 500 g",
+    "brand": "La Molisana",
+    "price": 1.49,
+    "discountedPrice": 1.49,
+    "label": "2,98 € / kg "
+   },
+   {
+    "code": "114432",
+    "description": "Rummo Mezze Penne Rigate N° 28 500 g",
+    "brand": "Rummo",
+    "price": 1.59,
+    "discountedPrice": 1.59,
+    "label": "3,18 € / kg "
+   },
+   {
+    "code": "114054",
+    "description": "Barilla Pasta Mezze Penne Rigate n.70 1Kg",
+    "brand": "Barilla",
+    "price": 1.89,
+    "discountedPrice": 1.89,
+    "label": "1,89 € / kg "
+   },
+   {
+    "code": "114055",
+    "description": "Barilla Pasta Penne Rigate n.73 1Kg",
+    "brand": "Barilla",
+    "price": 1.89,
+    "discountedPrice": 1.89,
+    "label": "1,89 € / kg "
+   }
+  ]
+ }
+}
