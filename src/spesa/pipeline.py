@@ -72,5 +72,6 @@ def _append_review(path: Path, day: date, store: str, bid: str, p: Product, reas
     with path.open("a", newline="") as f:
         w = csv.writer(f)
         if new:
-            w.writerow(["data", "insegna", "voce", "prodotto", "formato", "prezzo", "motivo"])
-        w.writerow([day.isoformat(), store, bid, p.name, p.format_text, p.price, reason])
+            w.writerow(["data", "insegna", "voce", "marca", "prodotto", "formato", "prezzo", "motivo", "url"])
+        w.writerow([day.isoformat(), store, bid, p.brand or "", p.name, p.format_text, p.price, reason,
+                    p.url or ""])
