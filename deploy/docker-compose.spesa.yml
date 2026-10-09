@@ -1,0 +1,25 @@
+# Container "spesa" da affiancare a n8n. NON pubblica porte: lo raggiunge solo n8n
+# (stessa rete Docker) all'indirizzo http://spesa:8080/run
+# Uso:  cd deploy && SPESA_TOKEN=... N8N_NETWORK=<rete di n8n> docker compose -f docker-compose.spesa.yml up -d --build
+services:
+  spesa:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: spesa
+    restart: unless-stopped
+    environment:
+      SPESA_TOKEN: ${SPESA_TOKEN:?imposta SPESA_TOKEN}
+      TZ: Europe/Rome
+    volumes:
+      - ../config:/app/config:ro      # user.yaml (indirizzo) e basket.yaml
+      - spesa-data:/app/data          # storico prezzi SQLite + report + raw
+      - spesa-review:/app/review      # casi ambigui
+    networks: [n8n]
+volumes:
+  spesa-data:
+  spesa-review:
+networks:
+  n8n:
+    external: true
+    name: ${N8N_NETWORK:?imposta N8N_NETWORK (docker network ls)}
