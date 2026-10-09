@@ -141,8 +141,8 @@ basket:
     queries: ["pane bianco mulino bianco"]
     accept:
       brands: ["Mulino Bianco"]
-      must_include: ["pane"]
-      must_exclude: ["carr", "fette", "tostar"]
+      must_include: ["pane", "bianco"]
+      must_exclude: ["carr", "fette", "tostar", "integral"]
     allow_private_label: false
   - id: piadine
     label: "Piadine"
@@ -180,6 +180,7 @@ basket:
     queries: ["carta igienica"]
     accept:
       must_include: ["igienica"]
+      must_exclude: ["umidific", "salviett"]   # le salviette umidificate non sono carta igienica
   - id: candeggina
     label: "Candeggina"
     amount: "1 l"
