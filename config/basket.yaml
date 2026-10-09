@@ -1,21 +1,189 @@
-# Paniere reale (formati liberi: il confronto e' sul prezzo al kg/l, non sul formato).
-# Per rimettere un vincolo di formato: unit_hint: "500g" + size_tolerance_pct: 25
+# Paniere ricavato dall'ordine Gros/Amazon (parziale: 46 prodotti su 69).
+# amount = quantita' totale necessaria (kg, l, pz): il costo e' prezzo/unita' x amount, quindi i formati
+# sono liberi. Marca: se `brands` e' vuoto va bene qualsiasi marca; se e' valorizzato le altre sono scartate.
+# Voci marcate "ASSUNZIONE" non erano state decise esplicitamente: correggile se serve.
 basket:
-  - id: cereali_colazione
-    label: "Cereali da colazione (Cheerios, Consilia, Nesquik)"
-    quantity: 1                       # TODO_UTENTE: quanti pezzi/confezioni servono
-    queries: ["cheerios", "consilia cereali", "nesquik cereali"]
-    accept:
-      brands: ["Cheerios", "Consilia", "Nesquik"]
-      must_include: ["cereal"]        # esclude cacao in polvere ecc.
-      must_exclude: ["barrett"]
-    allow_private_label: false        # scarta tutte le altre marche
-  - id: pasta
-    label: "Pasta (La Molisana, Rummo, Garofalo)"
-    quantity: 1                       # TODO_UTENTE
+  # --- Dispensa ---
+  - id: pasta_secca
+    label: "Pasta secca (La Molisana, Rummo, Garofalo)"
+    amount: "9.5 kg"                   # 19 confezioni da 500 g nell'ordine
     queries: ["pasta la molisana", "pasta rummo", "pasta garofalo"]
     accept:
       brands: ["Molisana", "Rummo", "Garofalo"]
-      must_include: []
-      must_exclude: []
+      must_exclude: ["fresc", "ripien", "sugo", "farina", "biscott", "uovo"]
     allow_private_label: false
+  - id: pasta_fresca
+    label: "Pasta fresca"
+    amount: "0.25 kg"                  # trofie Maffei 250 g
+    queries: ["pasta fresca"]
+    accept:
+      must_include: ["fresc"]
+      must_exclude: ["ripien", "sugo"]  # ASSUNZIONE: non ripiena, qualsiasi marca
+  - id: passata_mutti
+    label: "Passata di pomodoro Mutti"
+    amount: "2.2 kg"                   # Mutti 2x400 g + Petti 2x700 g
+    queries: ["passata mutti"]
+    accept:
+      brands: ["Mutti"]
+      must_include: ["passata"]
+    allow_private_label: false
+  - id: ceci
+    label: "Ceci"
+    amount: "1.74 kg"                  # 3x400 g + 540 g (peso lordo in scatola)
+    queries: ["ceci"]
+    accept:
+      must_include: ["ceci"]
+      must_exclude: ["farina", "hummus", "pasta", "zuppa", "burger"]
+  - id: fagioli
+    label: "Fagioli (borlotti, occhio, ecc.)"
+    amount: "1.1 kg"                   # borlotti 2x300 g + occhio 500 g
+    queries: ["fagioli"]
+    accept:
+      must_include: ["fagiol"]
+      must_exclude: ["verdi", "pasta", "zuppa", "burger", "cotti al forno"]
+  - id: lenticchie
+    label: "Lenticchie"
+    quantity: 1                        # TODO_UTENTE: non erano nell'ordine; indica la quantita' (es. amount: "0.4 kg")
+    queries: ["lenticchie"]
+    accept:
+      must_include: ["lenticch"]
+      must_exclude: ["farina", "pasta", "zuppa", "burger"]
+  - id: olio_evo
+    label: "Olio extra vergine De Cecco"
+    amount: "1 l"                      # ASSUNZIONE: marca fissa come nell'ordine
+    queries: ["olio extra vergine de cecco"]
+    accept:
+      brands: ["De Cecco"]
+      must_include: ["extra vergine"]
+    allow_private_label: false
+  - id: nutella
+    label: "Nutella"
+    amount: "0.95 kg"
+    queries: ["nutella"]
+    accept:
+      brands: ["Nutella", "Ferrero"]
+      must_include: ["nutella"]
+      must_exclude: ["biscuits", "b-ready", "gelato"]
+    allow_private_label: false
+  - id: biscotti_gocciole
+    label: "Pavesi Gocciole (cioccolato)"
+    amount: "1.5 kg"                   # 3 x 500 g
+    queries: ["gocciole pavesi"]
+    accept:
+      brands: ["Pavesi"]
+      must_include: ["gocciole"]
+    allow_private_label: false
+  - id: cereali
+    label: "Cereali (Cheerios, Consilia, Nesquik, Kellogg's)"
+    amount: "0.66 kg"                  # Coco Pops 2 x 330 g
+    queries: ["cheerios", "consilia cereali", "nesquik cereali", "kellogg's cereali"]
+    accept:
+      brands: ["Cheerios", "Consilia", "Nesquik", "Kellogg"]
+      must_include_any: ["cereal", "pops", "palline", "fiocchi", "cheerios", "choco"]
+      must_exclude: ["barrett", "solubile", "polvere", "bevanda"]
+    allow_private_label: false
+  # --- Freschi e frigo ---
+  - id: latte_uht_ps
+    label: "Latte UHT parzialmente scremato"
+    amount: "4 l"                      # 1 + 3 x 1 l
+    queries: ["latte uht parzialmente scremato"]
+    accept:
+      must_include: ["latte", "parzialmente", "uht"]
+      must_exclude: ["senza lattosio", "soia", "avena", "mandorl", "condensato", "bimbi", "crescita"]
+  - id: yogurt
+    label: "Yogurt (qualsiasi)"
+    amount: "1.75 kg"                  # 250 + 500 + 250 + 3 x 250 g
+    queries: ["yogurt"]
+    accept:
+      must_include: ["yogurt"]
+      must_exclude: ["bere", "bevanda", "gelato", "pet", "cane", "gatto"]
+  - id: galbanino
+    label: "Galbanino Galbani"
+    amount: "0.27 kg"
+    queries: ["galbanino"]
+    accept:
+      brands: ["Galbani"]
+      must_include: ["galbanino"]
+    allow_private_label: false
+  - id: salmone_affumicato
+    label: "Salmone affumicato"
+    amount: "0.15 kg"                  # 3 x 50 g; ASSUNZIONE: qualsiasi marca
+    queries: ["salmone affumicato"]
+    accept:
+      must_include: ["salmone", "affumicato"]
+      must_exclude: ["crema", "paté", "pate", "sugo", "gatto", "cane"]
+  - id: insalata
+    label: "Insalata in busta"
+    amount: "0.4 kg"                   # 2 x 200 g; ASSUNZIONE: qualsiasi marca
+    queries: ["insalata in busta"]
+    accept:
+      must_include: ["insalata"]
+      must_exclude: ["russa", "di riso", "di mare", "pasta", "pollo", "tonno"]
+  - id: patate
+    label: "Patate"
+    amount: "1.5 kg"
+    queries: ["patate"]
+    accept:
+      must_include: ["patat"]
+      must_exclude: ["surgel", "patatine", "chips", "fritt", "gnocchi", "pure", "purè", "dolci", "americane", "snack", "forno", "pasta"]
+  # --- Pane e simili ---
+  - id: pan_carre
+    label: "Pan carrè Mulino Bianco"
+    amount: "0.57 kg"                  # 2 x 285 g; ASSUNZIONE: marca fissa
+    queries: ["pan carrè mulino bianco"]
+    accept:
+      brands: ["Mulino Bianco"]
+      must_include: ["carr"]
+    allow_private_label: false
+  - id: pane_bianco
+    label: "Pane bianco Mulino Bianco"
+    amount: "0.8 kg"                   # 2 x 400 g; ASSUNZIONE: marca fissa
+    queries: ["pane bianco mulino bianco"]
+    accept:
+      brands: ["Mulino Bianco"]
+      must_include: ["pane"]
+      must_exclude: ["carr", "fette", "tostar"]
+    allow_private_label: false
+  - id: piadine
+    label: "Piadine"
+    amount: "0.6 kg"                   # 2 x 300 g; ASSUNZIONE: qualsiasi marca
+    queries: ["piadina"]
+    accept:
+      must_include: ["piadin"]
+      must_exclude: ["ripien", "farcit", "kit"]
+  # --- Surgelati ---
+  - id: surgelati
+    label: "Surgelati (verdure in busta, pizze o sofficini)"
+    amount: "1.1 kg"                   # 2x280 + 300 + 240 g di Aia nell'ordine
+    queries: ["verdure surgelate", "pizza surgelata", "sofficini"]
+    accept:
+      must_include_any: ["surgel", "sofficin", "congelat"]
+      must_exclude: ["gelato", "dolce", "torta", "pesce", "pollo", "carne", "gelati"]
+  - id: involtini_primavera
+    label: "Involtini primavera"
+    amount: "0.2 kg"                   # ASSUNZIONE: qualsiasi marca
+    queries: ["involtini primavera"]
+    accept:
+      must_include: ["involtini", "primavera"]
+  # --- Bevande ---
+  - id: succo_ace
+    label: "Succo ACE"
+    amount: "2 l"                      # 2 x 1 l Skipper ACE; ASSUNZIONE: qualsiasi marca
+    queries: ["succo ace"]
+    accept:
+      must_include: ["ace"]
+      must_exclude: ["acerola", "acetosa"]
+  # --- Casa ---
+  - id: carta_igienica
+    label: "Carta igienica"
+    amount: "4 pz"                     # 1 confezione da 4 rotoli; ASSUNZIONE: qualsiasi marca
+    queries: ["carta igienica"]
+    accept:
+      must_include: ["igienica"]
+  - id: candeggina
+    label: "Candeggina"
+    amount: "1 l"
+    queries: ["candeggina"]
+    accept:
+      must_include: ["candeggina"]
+      must_exclude: ["gel", "delicata", "spray"]

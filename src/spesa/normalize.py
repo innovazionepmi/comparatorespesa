@@ -9,7 +9,8 @@ from spesa.models import UnitKind
 _UNITS = {"kg": ("kg", 1.0), "g": ("kg", 0.001), "gr": ("kg", 0.001), "mg": ("kg", 1e-6),
           "l": ("l", 1.0), "lt": ("l", 1.0), "ltr": ("l", 1.0), "dl": ("l", 0.1),
           "cl": ("l", 0.01), "ml": ("l", 0.001),
-          "pz": ("pz", 1.0), "pezzi": ("pz", 1.0), "pz.": ("pz", 1.0)}
+          "pz": ("pz", 1.0), "pezzi": ("pz", 1.0), "pz.": ("pz", 1.0),
+          "rotoli": ("pz", 1.0), "rotolo": ("pz", 1.0), "fette": ("pz", 1.0)}
 _NUM = r"(\d+(?:[.,]\d+)?)"
 _MULTI = re.compile(rf"(\d+)\s*[x×]\s*{_NUM}\s*([a-zA-Z.]+)", re.IGNORECASE)
 _SINGLE = re.compile(rf"{_NUM}\s*([a-zA-Z.]+)", re.IGNORECASE)

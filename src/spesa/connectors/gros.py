@@ -30,7 +30,7 @@ def parse_products(payload: dict[str, Any]) -> list[Product]:
 class GrosConnector(Connector):
     name = "gros"
 
-    def __init__(self, http: PoliteClient | None = None, page_size: int = 40) -> None:
+    def __init__(self, http: PoliteClient | None = None, page_size: int = 100) -> None:
         self.http = http or PoliteClient("gros", base_url=BASE)
         self.page_size = page_size
 

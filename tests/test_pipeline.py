@@ -14,7 +14,7 @@ BASKET = Path(__file__).parent / "fixtures" / "basket_test.yaml"
 
 
 def test_basket_valid():
-    assert len(load_basket(CFG / "basket.yaml").basket) == 2
+    assert len(load_basket(CFG / "basket.yaml").basket) >= 20
     assert len(load_basket(BASKET).basket) == 4
 
 
@@ -49,3 +49,19 @@ def test_free_format_and_brand_filter():
     other = rummo.model_copy(update={"brand": "Barilla"})
     assert match(item, rummo).status == "match"  # nessun vincolo di formato
     assert match(item, other).status == "scartato"  # marche non in lista: scartate, non ambigue
+
+
+def test_amount_cost_and_must_include_any():
+    from spesa.config import BasketItem
+    from spesa.models import PricePoint
+
+    it = BasketItem(id="x", label="X", amount="2 kg", accept={"must_include_any": ["surgel", "sofficin"]})
+    ok = Product(store="s", store_product_id="1", name="Sofficini prosciutto", format_text="300 g", price=2)
+    no = ok.model_copy(update={"name": "Pizza fresca"})
+    assert match(it, ok).status == "match" and match(it, no).status == "scartato"
+    pp = PricePoint(day=date(2026, 1, 1), store="s", store_product_id="1", name="n", brand=None,
+                    format_text="500 g", price=1.0, promo_price=None, normalized_price=2.0, unit_kind="kg",
+                    available=True, url=None, basket_id="x")
+    from spesa.compare import ItemResult
+    r = ItemResult("x", "X", 1, pp, None, {"s": pp}, "2 kg")
+    assert r.cost("s") == 4.0  # 2 EUR/kg x 2 kg, indipendente dal formato della confezione

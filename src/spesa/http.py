@@ -20,9 +20,9 @@ RAW_KEEP_DAYS = 7
 
 class PoliteClient:
     def __init__(self, store: str, delay: tuple[float, float] = (2.0, 6.0), retries: int = 5,
-                 base_url: str = "", budget_s: float = 180.0) -> None:
+                 base_url: str = "", budget_s: float = 600.0) -> None:
         self.store, self.delay, self.retries = store, delay, retries
-        self.budget_s, self._t0 = budget_s, time.time()
+        self.budget_s, self._t0 = budget_s, 0.0  # il conto parte dalla prima richiesta
         self.client = httpx.Client(base_url=base_url, timeout=20, follow_redirects=True,
                                    headers={"User-Agent": UA, "Accept": "application/json"})
         self._last = 0.0
@@ -33,6 +33,8 @@ class PoliteClient:
         if wait > 0:
             time.sleep(wait)
         err: Exception | None = None
+        if not self._t0:
+            self._t0 = time.time()
         for attempt in range(self.retries):
             if time.time() - self._t0 > self.budget_s:
                 raise ConnectorError(f"{self.store}: tempo massimo superato ({self.budget_s:.0f}s), stop")

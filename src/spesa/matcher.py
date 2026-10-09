@@ -29,6 +29,9 @@ def match(item: BasketItem, p: Product) -> MatchResult:
     if missing:
         return MatchResult("scartato", f"manca keyword: {missing[0]}")
 
+    if item.accept.must_include_any and not any(_has(text, k) for k in item.accept.must_include_any):
+        return MatchResult("scartato", "manca una keyword richiesta")
+
     brand_ok = any(_has(text, b) for b in item.accept.brands)
     if item.accept.brands and not brand_ok:
         if not item.allow_private_label:
