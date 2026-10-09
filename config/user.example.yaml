@@ -5,6 +5,6 @@ address:
   city: "TODO_UTENTE"
 service: delivery            # delivery | pickup: uguale per tutte le insegne
 stores:
-  todis:     { enabled: true, delivery_fee: TODO_UTENTE, min_order: TODO_UTENTE }
+  todis:     { enabled: false, delivery_fee: TODO_UTENTE, min_order: TODO_UTENTE }
   gros:      { enabled: true, delivery_fee: TODO_UTENTE, min_order: TODO_UTENTE }
   esselunga: { enabled: true, delivery_fee: TODO_UTENTE, min_order: TODO_UTENTE }

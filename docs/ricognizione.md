@@ -53,3 +53,10 @@ Non ho ispezionato le chiamate di rete reali dei siti (nessun test live da quest
 - I flag `courier/furgoncino` delle suggestions Esselunga risultano `false` ovunque (anche a Milano): non affidabili per decidere la copertura.
 - I prezzi Gros sono considerati identici per tutta Roma (un solo listino "Gros" nelle risposte).
 - Il filtro marca/formato del matcher e' deterministico; i casi dubbi finiscono in `review/ambigui.csv`.
+
+## Aggiornamento 2026-10-09 (verifiche manuali dell'utente)
+
+- **Esselunga: coperta** (verificato a mano dall'utente; il mio primo test automatico era sbagliato perche' la via va scelta dai suggerimenti, senza civico). Connettore completo e funzionante, senza account: `onboarding/street/suggestions` -> `services/available` -> `GET onboarding/street/<id>` -> `POST search/facet` (header `x-page-path: supermercato`). Il sito resetta a volte la connessione: il client riprova con backoff. Nota robots.txt: le pagine `/ricerca` sono vietate, il connettore usa solo l'endpoint JSON del catalogo (stessa chiamata della home), una ricerca per voce.
+- **Gros: copre tutta Roma** (verificato dall'utente sul sito). Connettore funzionante.
+- **Todis: non consegna** all'indirizzo (verificato dall'utente). Disabilitato in `config/user.yaml` (`enabled: false`); resta solo il controllo di copertura.
+- **Conad: consegna** (verificato dall'utente su spesaonline.conad.it, prima fascia oggi 17-19). Ispezione iniziale: sito Adobe Experience Manager, catalogo servito come HTML (la ricerca mostra "5422 risultati"), indirizzo inserito con autocompletamento Google Places (`googleInputEntrypageLine1` + civico in `...Line2`). robots.txt non disponibile (risposta di errore). **Connettore non ancora implementato**: serve completare il flusso indirizzo -> servizio "Spesa a casa" e individuare dove arrivano i dati dei prodotti. Probabilmente Playwright.
