@@ -1,0 +1,29 @@
+[
+ {
+  "store_product_id": "b1",
+  "name": "Cereali Kellogs",
+  "brand": "Kellogs",
+  "format_text": "375 g",
+  "price": 2.9
+ },
+ {
+  "store_product_id": "b3",
+  "name": "Latte intero",
+  "format_text": "1 l",
+  "price": 1.3
+ },
+ {
+  "store_product_id": "b4",
+  "name": "Penne rigate De Cecco",
+  "brand": "De Cecco",
+  "format_text": "500 g",
+  "price": 1.5
+ },
+ {
+  "store_product_id": "b5",
+  "name": "Cereali integrali",
+  "brand": "Kellogs",
+  "format_text": "250 g",
+  "price": 2.0
+ }
+]

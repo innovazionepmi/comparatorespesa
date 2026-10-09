@@ -1,0 +1,10 @@
+# Copia in config/user.yaml (ignorato da git) e compila i TODO_UTENTE.
+address:
+  street: "TODO_UTENTE"
+  cap: "TODO_UTENTE"
+  city: "TODO_UTENTE"
+service: delivery            # delivery | pickup: uguale per tutte le insegne
+stores:
+  todis:     { enabled: true, delivery_fee: TODO_UTENTE, min_order: TODO_UTENTE }
+  gros:      { enabled: true, delivery_fee: TODO_UTENTE, min_order: TODO_UTENTE }
+  esselunga: { enabled: true, delivery_fee: TODO_UTENTE, min_order: TODO_UTENTE }

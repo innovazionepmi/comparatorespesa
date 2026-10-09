@@ -1,0 +1,6 @@
+[
+ {"store_product_id":"a1","name":"Cereali Cheerios","brand":"CHEERIOS","format_text":"500 g","price":3.50},
+ {"store_product_id":"a2","name":"Barrette ai cereali","brand":"X","format_text":"6x25g","price":2.00},
+ {"store_product_id":"a3","name":"Latte intero UHT","format_text":"1 l","price":1.40},
+ {"store_product_id":"a4","name":"Penne rigate Barilla","brand":"Barilla","format_text":"500 g","price":1.60,"promo_price":1.20}
+]
