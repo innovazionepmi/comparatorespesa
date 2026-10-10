@@ -63,7 +63,8 @@ def run_all(stores: list[str] | None, fake: bool, config_dir: str, db: str, out_
             failures[name] = f"errore inatteso ({type(e).__name__})"
     cmp = compare(basket, points, user.stores)
     not_found = [i.label for i in cmp.items if i.best is None]
-    md = rep.markdown(today, cmp, failures, len(_ambig(storage, today)), not_found)
+    md = rep.markdown(today, cmp, failures, len(_ambig(storage, today)), not_found,
+                      [n for n, c in user.stores.items() if c.enabled])
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     (out / f"{today.isoformat()}.md").write_text(md)

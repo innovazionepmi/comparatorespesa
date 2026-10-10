@@ -27,6 +27,12 @@ def tail_format(description: str) -> str | None:
     return m.group(1) if m else None
 
 
+def promo_text(entity: dict[str, Any]) -> str | None:
+    """Testi delle offerte (es. 'scontato del 50 % (dal .. al ..)', multiacquisto) dai marcatori del prodotto."""
+    texts = [v["text"] for v in entity.get("values", []) if v.get("actionType") and v.get("text")]
+    return "; ".join(dict.fromkeys(texts)) or None
+
+
 def parse_entities(payload: dict[str, Any]) -> list[Product]:
     out: list[Product] = []
     for e in (payload.get("displayables") or {}).get("entities", []):
@@ -37,7 +43,7 @@ def parse_entities(payload: dict[str, Any]) -> list[Product]:
         out.append(Product(
             store="esselunga", store_product_id=str(e["code"]), name=e["description"],
             brand=e.get("brand"), format_text=tail_format(e["description"]), price=float(e["price"]),
-            promo_price=promo, url=f"{BASE}/commerce/nav/supermercato/store/home"))
+            promo_price=promo, promo_note=promo_text(e), url=f"{BASE}/commerce/nav/supermercato/store/home"))
     return out
 
 

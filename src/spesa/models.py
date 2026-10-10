@@ -22,6 +22,7 @@ class Product(BaseModel):
     unit_kind: UnitKind | None = None
     available: bool = True
     url: str | None = None
+    promo_note: str | None = None  # testo dell'offerta (sconto, scadenza, multiacquisto)
 
 
 class PricePoint(BaseModel):
@@ -38,6 +39,7 @@ class PricePoint(BaseModel):
     available: bool
     url: str | None
     basket_id: str | None = None
+    promo_note: str | None = None
     comparable: bool = True  # False se il formato non e' perfettamente confrontabile
     ts: datetime = Field(default_factory=datetime.now)
 

@@ -24,7 +24,7 @@ SCHEMA = """
 CREATE TABLE IF NOT EXISTS price_points(
   day TEXT, store TEXT, store_product_id TEXT, name TEXT, brand TEXT, format_text TEXT,
   price REAL, promo_price REAL, normalized_price REAL, unit_kind TEXT, available INTEGER,
-  url TEXT, basket_id TEXT, comparable INTEGER, ts TEXT);
+  url TEXT, basket_id TEXT, comparable INTEGER, ts TEXT, promo_note TEXT);
 CREATE INDEX IF NOT EXISTS ix_pp ON price_points(store, basket_id, day);
 CREATE TABLE IF NOT EXISTS runs(day TEXT, store TEXT, status TEXT, duration_s REAL, note TEXT);
 CREATE TABLE IF NOT EXISTS ambigui(day TEXT, store TEXT, basket_id TEXT, name TEXT, reason TEXT);
@@ -40,10 +40,10 @@ class SqliteStorage(Storage):
 
     def save_points(self, points: list[PricePoint]) -> None:
         self.db.executemany(
-            "INSERT INTO price_points VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO price_points VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             [(p.day.isoformat(), p.store, p.store_product_id, p.name, p.brand, p.format_text,
               p.price, p.promo_price, p.normalized_price, p.unit_kind, int(p.available), p.url,
-              p.basket_id, int(p.comparable), p.ts.isoformat()) for p in points])
+              p.basket_id, int(p.comparable), p.ts.isoformat(), p.promo_note) for p in points])
         self.db.commit()
 
     def save_run(self, day: str, store: str, status: str, duration_s: float, note: str = "") -> None:

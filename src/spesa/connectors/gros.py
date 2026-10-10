@@ -18,12 +18,16 @@ def parse_products(payload: dict[str, Any]) -> list[Product]:
         price, shown = p.get("price"), p.get("priceDisplay")
         if price is None:
             continue
+        w = p.get("warehousePromo") or {}
+        note = (f"sconto {w['discountPerc']:.0f}% fino al {w['expireDate']}"
+                if w.get("discountPerc") and w.get("expireDate") else None)
         promo = shown if (p.get("warehousePromo") and shown is not None and shown < price) else None
         out.append(Product(
             store="gros", store_product_id=str(p["productId"]), name=p["name"].title(),
             brand=(p.get("shortDescr") or "").title() or None, format_text=p.get("description"),
             price=float(price), promo_price=float(promo) if promo is not None else None,
-            available=(p.get("available") or 0) > 0, url=BASE + p.get("itemUrl", "")))
+            available=(p.get("available") or 0) > 0, url=BASE + p.get("itemUrl", ""),
+            promo_note=note if promo is not None else None))
     return out
 
 

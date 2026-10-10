@@ -27,18 +27,19 @@ def run_store(conn: Connector, basket: Basket, user: UserCfg, storage: Storage, 
               review_csv: Path, delay: tuple[float, float] = (2.0, 6.0)) -> list[PricePoint]:
     t0 = time.time()
     points: list[PricePoint] = []
+    cache: dict[str, list[Product]] = {}  # stessa ricerca = una sola richiesta per run
     try:
         if not conn.set_location(user.address.street, user.address.cap, user.address.city):
             raise ConnectorError("indirizzo non coperto")
-        for n, item in enumerate(basket.basket):
-            if n and delay[1] > 0:
-                time.sleep(random.uniform(*delay))
+        for item in basket.basket:
             seen: set[str] = set()
             found: list[Product] = []
-            for qn, q in enumerate(_queries(item)):
-                if qn and delay[1] > 0:
-                    time.sleep(random.uniform(*delay))
-                found += conn.search(q)
+            for q in _queries(item):
+                if q not in cache:
+                    if cache and delay[1] > 0:
+                        time.sleep(random.uniform(*delay))
+                    cache[q] = conn.search(q)
+                found += cache[q]
             for p in found:
                 if p.store_product_id in seen:
                     continue
@@ -69,7 +70,7 @@ def to_point(p: Product, day: date, basket_id: str, comparable: bool) -> PricePo
         norm, kind = p.unit_price, p.unit_kind
     return PricePoint(day=day, store=p.store, store_product_id=p.store_product_id, name=p.name,
                       brand=p.brand, format_text=p.format_text, price=p.price,
-                      promo_price=p.promo_price, normalized_price=norm, unit_kind=kind,
+                      promo_price=p.promo_price, promo_note=p.promo_note, normalized_price=norm, unit_kind=kind,
                       available=p.available, url=p.url, basket_id=basket_id, comparable=comparable)
 
 

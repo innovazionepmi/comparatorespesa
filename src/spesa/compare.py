@@ -29,6 +29,20 @@ class ItemResult:
         return round(p.effective_price * self.quantity, 2)
 
     @property
+    def winner(self) -> str | None:
+        """Insegna col prezzo unitario piu' basso (None se c'e' una sola insegna o pareggio)."""
+        if self.best and self.second and self.best.normalized_price != self.second.normalized_price:
+            return self.best.store
+        return None
+
+    @property
+    def saving_pct(self) -> float | None:
+        sv = self.saving_vs_second
+        if sv is None or not self.second or not self.second.normalized_price:
+            return None
+        return round(sv / self.second.normalized_price * 100, 1)
+
+    @property
     def saving_vs_second(self) -> float | None:
         if self.best and self.second and self.best.normalized_price and self.second.normalized_price:
             return self.second.normalized_price - self.best.normalized_price
