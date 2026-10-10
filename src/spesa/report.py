@@ -16,7 +16,8 @@ def _cell(p: PricePoint | None) -> str:
     unit = f" ({_eur(p.normalized_price)}/{p.unit_kind})" if p.normalized_price else ""
     old = f", era {_eur(p.price)}" if p.promo_price is not None else ""
     fmt = f" {p.format_text}" if p.format_text else ""
-    return f"{p.name}{fmt}: **{_eur(p.effective_price)}**{unit}{old}"
+    brand = f"{p.brand} - " if p.brand and p.brand.lower() not in p.name.lower() else ""
+    return f"{brand}{p.name}{fmt}: **{_eur(p.effective_price)}**{unit}{old}"
 
 
 def _verdict(i: ItemResult) -> str:

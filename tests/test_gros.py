@@ -18,3 +18,10 @@ def test_parse_gros():
 def test_location_only_rome():
     c = GrosConnector()
     assert c.set_location("via X 1", "00134", "Roma") and not c.set_location("v", "20121", "Milano")
+
+
+def test_clean_format():
+    from spesa.connectors.gros import clean_format
+
+    assert clean_format("500 g (Minimo € 1,49 - 55%)") == "500 g"
+    assert clean_format("1;5 l") == "1,5 l"

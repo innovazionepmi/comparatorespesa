@@ -1,6 +1,7 @@
 """Gros Spesa Online (gros.it) via API JSON della piattaforma EBSN. Endpoint e parsing solo qui."""
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from spesa.connectors.base import Connector
@@ -9,6 +10,14 @@ from spesa.models import Product
 
 BASE = "https://www.gros.it"
 PRODUCTS = "/ebsn/api/products"  # GET ?q=<testo>&page_size=N
+
+
+def clean_format(desc: str | None) -> str | None:
+    """'500 g (Minimo € 1,49 - 55%)' -> '500 g'; '1;5 l' -> '1,5 l' (refuso del sito)."""
+    if not desc:
+        return None
+    desc = re.sub(r"\s*\(Minimo[^)]*\)", "", desc).strip()
+    return re.sub(r"(\d);(\d)", r"\1,\2", desc)
 
 
 def parse_products(payload: dict[str, Any]) -> list[Product]:
@@ -24,7 +33,7 @@ def parse_products(payload: dict[str, Any]) -> list[Product]:
         promo = shown if (p.get("warehousePromo") and shown is not None and shown < price) else None
         out.append(Product(
             store="gros", store_product_id=str(p["productId"]), name=p["name"].title(),
-            brand=(p.get("shortDescr") or "").title() or None, format_text=p.get("description"),
+            brand=(p.get("shortDescr") or "").title() or None, format_text=clean_format(p.get("description")),
             price=float(price), promo_price=float(promo) if promo is not None else None,
             available=(p.get("available") or 0) > 0, url=BASE + p.get("itemUrl", ""),
             promo_note=note if promo is not None else None))

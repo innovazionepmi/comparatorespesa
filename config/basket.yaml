@@ -245,8 +245,7 @@ basket:
     queries: ["pizza surgelata"]
     accept:
       must_include: ["pizza"]
-      must_include_any: ["surgel", "congelat"]
-      must_exclude: ["fresca", "gelato"]
+      must_exclude: ["fresca", "gelato", "base", "impasto", "farina", "pizzaiola", "snack", "rustico"]
     allow_private_label: true
   - id: sofficini
     label: "Sofficini"
